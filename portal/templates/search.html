@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load des_tags %}
+{% block content %}
+    <h2 class="row content-header"><p>搜索<span>结果</span></p></h2>
+
+    <div class="row content-box">
+        <div class="col-md-9 left">
+            {% if not articles or articles.size < 1 %}
+                <h3>找不到文章</h3>
+            {% endif %}
+            {% for article in articles %}
+                <div class="article_item row">
+                    <div clas="col-sm-12 top">
+                        <h3><a href="/article/{{ article.id|get_encode_id }}.html">{{ article.title }}</a></h3>
+                        {% if article.cover %}
+                            <img src="{{ article.cover.url }}" alt="{{ article.cover.name }}" class="img-thumbnail">
+                            <p class="content">{{ article.content|truncatechars:160 }}</p>
+                        {% else %}
+                            <p class="content blank-txt">{{ article.content }}</p>
+                        {% endif %}
+                        <a class="readmore" href="/article/{{ article.id|get_encode_id }}.html">阅读全文>></a>
+                    </div>
+                    <div class="col-sm-12 bottom">
+                        <p class="author-info">
+                            <span>{{ article.publish_date|date:"Y-m-d" }}</span>
+                            <span>作者：{{ article.author.first_name }}</span>
+                            <span>类型：<a href="/{{ article.type.name }}.html">{{ article.type.intro }}</a></span>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-3 right">
+            <div class="search-box">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+            <div class="weather">{% include 'weather.html' %}</div>
+            <br>
+            <div class="right-nav">
+                <h3><p>最新<span>文章</span></p></h3>
+                <ul class="new">
+                    {% for article in new_articles %}
+                        <li><a href="/article/{{ article.id|get_encode_id }}.html">{{ article.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="right-nav">
+                <h3><p>点击<span class="blue">排行</span></p></h3>
+                <ul class="ranking">
+                    {% for article in ranking_articles %}
+                        <li><a href="/article/{{ article.id|get_encode_id }}.html">{{ article.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="right-nav">
+                <h3><p>收录<span class="red">标签</span></p></h3>
+                <ul class="tags">
+                    {% for tag in tags %}
+                        <a class="btn btn-info btn-xs" href="/search?tag={{ tag.name }}">{{ tag.name }}</a>
+                    {% endfor %}
+                    <a class="btn btn-success btn-xs" href="/tags.html">全部</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

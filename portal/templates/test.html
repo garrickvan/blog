@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <hr>
+    <p>当前脚本工作目录:{{ cwdpath }}</p>
+    <p>python版本:{{ python_version }}</p>
+    <p>运行平台:{{ platform }}</p>
+    <p>django版本:{{ django_version }}</p>
+{% endblock %}

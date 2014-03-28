@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load des_tags %}
+{% block content %}
+    <div class="row sub-nav-header narrow_bottom">
+        <a href="/home.html"><span class="main-btn">网站首页</span></a>
+        <a href="/{{ article.type.name }}.html"><span class="sub-btn">{{ article.type.intro }}</span></a>
+        <p class="location_nav">您当前的位置：
+            <a href="/home.html">首页</a>&nbsp;&gt;&nbsp;
+            <a href="/{{ article.type.name }}.html">{{ article.type.intro }}</a>&nbsp;&gt;&nbsp;
+            <a href="/article/{{ article.id|get_encode_id }}.html">{{ article.title|truncatechars:8 }}</a>
+        </p>
+    </div>
+
+    <div class="row content-box">
+        <div class="col-md-9 left">
+            <h2 class="article_title">{{ article.title }}</h2>
+            <p class="article_top_meta">
+                <span>发布时间：{{ article.publish_date |date:'Y-m-d' }}</span>
+                <span>编辑：{{ article.author.first_name }}</span>
+                <span>阅读({{ article.read_count }})</span>
+            </p>
+            <div class="article_content">
+                {{ article.content|safe }}
+            </div>
+            <div class="article_bottom_meta">
+                <span>标签：</span>
+                {% for tag in article.tags.all %}
+                    <a href="/search?tag={{ tag.name }}">{{ tag.name }}</a>
+                {% endfor %}
+            </div>
+            <div class="article_nav_tool_bar">
+                {% if before_article %}
+                    <span>上一篇：<a href="/article/{{ before_article.id|get_encode_id }}.html"> {{ before_article.title }}</a></span>
+                {% else %}
+                    <span>上一篇：没有了</span>
+                {% endif %}
+
+                {% if after_article %}
+                    <span class="after">下一篇：<a href="/article/{{ after_article.id|get_encode_id }}.html"> {{ after_article.title }}</a></span>
+                {% else %}
+                    <span class="after">下一篇：没有了</span>
+                {% endif %}
+            </div>
+
+            <div class="related_article">
+                <h2>相关文章</h2>
+                <div class="row">
+                    {% for article in related_articles %}
+                        <div class="col-sm-6"><a href="/article/{{ article.id|get_encode_id }}.html">{{ article.title }}</a> </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 right">
+            <div class="search-box">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+            </div>
+            <div class="right-nav">
+                <h3><p>栏目<span>最新</span></p></h3>
+                <ul class="new">
+                    {% for article in new_articles %}
+                        <li><a href="/article/{{ article.id|get_encode_id }}.html">{{ article.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="right-nav">
+                <h3><p>点击<span class="blue">排行</span></p></h3>
+                <ul class="ranking">
+                    {% for article in ranking_articles %}
+                        <li><a href="/article/{{ article.id|get_encode_id }}.html">{{ article.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="right-nav">
+                <h3><p>收录<span class="red">标签</span></p></h3>
+                <ul class="tags">
+                    {% for tag in tags %}
+                        <a class="btn btn-info btn-xs" href="/search?tag={{ tag.name }}">{{ tag.name }}</a>
+                    {% endfor %}
+                    <a class="btn btn-success btn-xs" href="/tags.html">全部</a>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

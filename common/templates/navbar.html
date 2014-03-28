@@ -1,0 +1,28 @@
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        {% if module_index == 0 %}
+            <li class="active"><a href="/home.html">主页</a></li>
+        {% else %}
+            <li><a href="/home.html">主页</a></li>
+        {% endif %}
+
+        {% if module_index == 1 %}
+            <li class="active"><a href="/development.html">开发笔记</a></li>
+        {% else %}
+            <li><a href="/development.html">开发笔记</a></li>
+        {% endif %}
+
+        {% if module_index == 2 %}
+            <li class="active"><a href="/life_record.html">随思录</a></li>
+        {% else %}
+            <li><a href="/life_record.html">随思录</a></li>
+        {% endif %}
+
+        {% if module_index == 3 %}
+            <li class="active"><a href="/about_me.html">关于</a></li>
+        {% else %}
+            <li><a href="/about_me.html">关于</a></li>
+        {% endif %}
+    </ul>
+    <h3 class="site-title">X<span>future</span></h3>
+</div>

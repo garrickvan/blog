@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 class="row content-header"><p>收录<span>标签</span></p></h2>
+
+    <div class="row tag-content">
+        {% for tag in tags %}
+            <a class="btn btn-info btn-xs" href="/search?tag={{ tag.name }}">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
