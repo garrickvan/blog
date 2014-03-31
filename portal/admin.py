@@ -27,8 +27,13 @@ class ArticleAdmin(admin.ModelAdmin):
             '/static/kindeditor/config.js',
         )
 
+# 资讯Key_value_表的视图定义
+class KVInfoAdmin(admin.ModelAdmin):
+    list_display = ('key', 'order')
+
 # 注册表到admin
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(ArticleType, ArticleTypeAdmin)
 admin.site.register(ImgFile, ImgFileAdmin)
+admin.site.register(KVInfo, KVInfoAdmin)

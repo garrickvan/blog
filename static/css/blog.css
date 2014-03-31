@@ -144,6 +144,9 @@ body {
   padding-left: 24px;
   border-bottom: #CCC dotted 1px;
 }
+.right-nav ul.tags a {
+  margin-bottom: 10px;
+}
 .pagination-container .pagination {
   margin-bottom: 0;
 }

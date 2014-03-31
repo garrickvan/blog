@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^article/(?P<id>[a-zA-Z0-9]+).html$', views.article),
     url(r'^tags.html$', views.tags),
     url(r'^search$', views.search),
+    url(r'^read_counter', views.read_counter),
     url(r'^test$', views.testbae),
 )

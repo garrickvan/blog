@@ -21,18 +21,7 @@
                 </div>
             </div>
         {% endfor %}
-        {% if page_count > 0 %}
-            <div class="pagination-container">
-                <ul class="pagination pagination-sm">
-                    <li><a href="/development/1.html">«</a></li>
-                    {% load kits_tags %}
-                    {% for number in page_count|get_range %}
-                        <li><a href="/development/{{ number}}.html">{{ number }}</a> </li>
-                    {% endfor %}
-                    <li><a href="/development/{{ page_count }}.html">»</a></li>
-                </ul>
-            </div>
-        {% endif %}
+        {% include 'pagination.html' %}
     </div>
     <div class="col-md-3 right">
         <div class="search-box">

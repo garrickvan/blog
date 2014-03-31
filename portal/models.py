@@ -46,3 +46,15 @@ class Article(models.Model):
 
     class Meta:
         ordering = ('-publish_date',)
+
+# 资讯Key_Value表
+class KVInfo(models.Model):
+    key = models.CharField(max_length=32)
+    val = models.TextField()
+    order = models.IntegerField()
+
+    def __unicode__(self):
+        return self.key
+
+    class Mate:
+        ordering = ('key', 'order')

@@ -5,7 +5,7 @@
 
     <div class="row content-box">
         <div class="col-md-9 left">
-            {% if not articles or articles.size < 1 %}
+            {% if not articles %}
                 <h3>找不到文章</h3>
             {% endif %}
             {% for article in articles %}
@@ -29,6 +29,7 @@
                     </div>
                 </div>
             {% endfor %}
+            {% include 'pagination.html' %}
         </div>
         <div class="col-md-3 right">
             <div class="search-box">

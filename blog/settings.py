@@ -22,9 +22,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bae',
-        'USER': 'bae',
-        'PASSWORD': 'bae',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'sqld.duapp.com',
         'PORT': '4050',
     }
@@ -84,7 +84,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '527vw53r(c5@t99zi*ba_r21(2nj2#iw9&e_p2_xgu7z#q7(2r'
+SECRET_KEY = '527vw53r(c5@t99zi*ba_r23(2nj2#iw9&e_p2_xgu7z#q7(2r'
 
 # List of callables that know how to import templates from various sources.
 # TEMPLATE_LOADERS = (
@@ -137,3 +137,6 @@ INSTALLED_APPS = (
     'portal',
     'common',
 )
+
+from common.log_tool import get_logger
+get_logger()

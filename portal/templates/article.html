@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load des_tags %}
 {% block content %}
+    <span style="display: none" id="read_counter" target="{{ article.id|get_encode_id }}" csrftoken="{{ csrf_token }}"></span>
     <div class="row sub-nav-header narrow_bottom">
         <a href="/home.html"><span class="main-btn">网站首页</span></a>
         <a href="/{{ article.type.name }}.html"><span class="sub-btn">{{ article.type.intro }}</span></a>
@@ -50,6 +51,13 @@
                     {% endfor %}
                 </div>
             </div>
+            <br>
+            <div style="padding-right: 15px">
+                <hr>
+                {# 多说评论框 start #}
+                <div class="ds-thread" data-thread-key="{{ article.id|get_encode_id }}" data-title="{{ article.title }}" data-url="http://xfuture.duapp.com/article/{{ article.id|get_encode_id }}.html"></div>
+                {# 多说评论框 end #}
+            </div>
         </div>
 
         <div class="col-md-3 right">
@@ -91,4 +99,17 @@
 
         </div>
     </div>
+    {# 多说公共JS代码 start (一个网页只需插入一次)#}
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xfuture"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+        </script>
+    {# 多说公共JS代码 end #}
 {% endblock %}
