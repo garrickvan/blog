@@ -57,4 +57,4 @@ class KVInfo(models.Model):
         return self.key
 
     class Mate:
-        ordering = ('key', 'order')
+        ordering = ('order', 'key', )

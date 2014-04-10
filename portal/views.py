@@ -42,6 +42,7 @@ def development(request, page_number='1'):
     new_articles = get_development_new_articles(development_type)
     ranking_articles = get_development_ranking_articles(development_type)
     tags = get_tags()
+    development_sub_nav_world = get_kv_info('development_sub_nav_world')[0].val
     return render_to_response('development.html',
         {'module_index' : development_type.module_index,
          'page_title': "开发笔记",
@@ -50,6 +51,7 @@ def development(request, page_number='1'):
          'ranking_articles' : ranking_articles,
          'tags' : tags,
          'page_count' : page_count,
+         'development_sub_nav_world': development_sub_nav_world,
          'page_number' : number},
         context_instance=RequestContext(request))
 
@@ -70,14 +72,16 @@ def life_record(request, page_number='1'):
     new_articles = get_life_record_new_articles(life_record_type)
     ranking_articles = get_life_record_ranking_articles(life_record_type)
     tags = get_tags()
+    life_record_sub_nav_world = get_kv_info('life_record_sub_nav_world')[0].val
     return render_to_response('life_record.html',
-        {'module_index' : life_record_type,
+        {'module_index' : life_record_type.module_index,
          'page_title': "随思录",
          'articles' : articles,
          'new_articles': new_articles,
          'ranking_articles' : ranking_articles,
          'tags' : tags,
          'page_count' : page_count,
+         'life_record_sub_nav_world' : life_record_sub_nav_world,
          'page_number' : number},
         context_instance=RequestContext(request))
 
@@ -85,8 +89,16 @@ def life_record(request, page_number='1'):
 # 关于页面
 @cache_page(60 * 60 * 24 * 365)
 def about_me(request):
+    about_me_info = get_kv_info('about_me_info')
+    about_my_blog = get_kv_info('about_my_blog')
+    personal_info = get_kv_info('personal_info')
+    about_sub_nav_world = get_kv_info('about_sub_nav_world')[0].val
     return render_to_response('about_me.html',
         {'module_index' : 3,
+         'about_me_info' : about_me_info,
+         'about_my_blog' : about_my_blog,
+         'personal_info' : personal_info,
+         'about_sub_nav_world' : about_sub_nav_world,
          'page_title': "关于我"},
         context_instance=RequestContext(request))
 

@@ -128,3 +128,7 @@ def get_search_tag_articles(query_arg, start, end, suffix=''):
 def get_search_tag_articles_page_count(query_arg, suffix=''):
     tag = Tag.objects.filter(name=query_arg)
     return (Article.objects.filter(tags__in=tag).count() / 10) + 1
+
+## 关于页面信息键值对查询
+def get_kv_info(key):
+    return KVInfo.objects.filter(key=key)

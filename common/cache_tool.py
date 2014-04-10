@@ -26,7 +26,7 @@ def get_cache():
     if not cache:
         from bae_memcache import BaeMemcache
         cache_id = ""
-        cache_addr = "cache.duapp.com:20243"
+        cache_addr = ""
         api_key = ""
         secret_key = ""
         cache = BaeMemcache(cache_id, cache_addr, api_key, secret_key)

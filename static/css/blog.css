@@ -314,7 +314,7 @@ body {
   padding-left: 40px;
 }
 .related_article .col-sm-6 {
-  padding: 0;
+  padding: 10px 0 0;
 }
 .related_article .col-sm-6 > a {
   text-decoration: none;

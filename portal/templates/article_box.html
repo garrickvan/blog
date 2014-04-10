@@ -12,7 +12,7 @@
                     </p>
                     {% if article.cover %}
                         <img src="{{ article.cover.url }}" alt="{{ article.cover.name }}" class="img-thumbnail">
-                        <p class="content">{{ article.content|truncatechars:160 }}</p>
+                        <p class="content">{{ article.content|striptags|truncatechars:160 }}</p>
                     {% else %}
                         <p class="content blank-txt">{{ article.content }}</p>
                     {% endif %}
