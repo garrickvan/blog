@@ -6,7 +6,31 @@
     <div class="row content-box">
         <div class="col-md-9 left">
             {% if not articles %}
-                <h3>找不到文章</h3>
+                {%  if not q_results %}
+                    <h3>找不到文章</h3>
+                {% else %}
+                    {% for q in q_results %}
+                        <div class="article_item row">
+                            <div clas="col-sm-12 top">
+                                <h3><a href="/article/{{ q.id|get_encode_id }}.html">{{ q.title }}</a></h3>
+                                {% if q.cover_url %}
+                                    <img src="{{ q.cover_url }}" alt="{{ q.cover_name }}" class="img-thumbnail">
+                                    <p class="content">{{ q.short_content }}</p>
+                                {% else %}
+                                    <p class="content">{{ q.short_content }}</p>
+                                {% endif %}
+                                <a class="readmore" href="/article/{{ q.id|get_encode_id }}.html">阅读全文>></a>
+                            </div>
+                            <div class="col-sm-12 bottom">
+                                <p class="author-info">
+                                    <span>{{ q.date|date:"Y-m-d" }}</span>
+                                    <span>作者：{{ q.author_name }}</span>
+                                    <span>类型：<a href="/{{ q.type_name }}.html">{{ q.type_intro }}</a></span>
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             {% endif %}
             {% for article in articles %}
                 <div class="article_item row">
@@ -16,7 +40,7 @@
                             <img src="{{ article.cover.url }}" alt="{{ article.cover.name }}" class="img-thumbnail">
                             <p class="content">{{ article.content|striptags|truncatechars:160 }}</p>
                         {% else %}
-                            <p class="content blank-txt">{{ article.content }}</p>
+                            <p class="content blank-txt">{{ article.content|striptags|truncatechars:200 }}</p>
                         {% endif %}
                         <a class="readmore" href="/article/{{ article.id|get_encode_id }}.html">阅读全文>></a>
                     </div>
@@ -34,9 +58,9 @@
         <div class="col-md-3 right">
             <div class="search-box">
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control">
+                    <input id='searching_by_engine_input' type="text" class="form-control">
                     <span class="input-group-btn">
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        <button id='searching_by_engine_btn' class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
                 </div>
             </div>

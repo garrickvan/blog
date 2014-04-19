@@ -7,3 +7,4 @@ urlpatterns = patterns('',
     url(r'^manage_site/', include(admin.site.urls)),
     url(r'^', include('portal.urls')),
 )
+

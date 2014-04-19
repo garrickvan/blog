@@ -1,29 +1,29 @@
 # coding=utf-8
-from common.cache_tool import get_cache
+#from common.cache_tool import get_cache
 from portal.models import *
 
 from common.log_tool import get_logger
 
-def load_from_cache(key, time):
-    '''
-    返回key对应的缓存，time是缓存的有效时间，秒为单位，如果不存在就调用fun函数获取
-    '''
-    def __fun_deco(fun):
-        def __fun_arg_deco(*args, **kwargs):
-            cache = get_cache()
-            suffix = kwargs.pop('suffix', None)
-            if suffix:
-                key_str = ''.join(key).join(str(suffix))
-            else:
-                key_str = str(key)
-            val = cache.get(key_str)
-            get_logger().debug('Getting cache by key(%s)' %(key_str))
-            if not val:
-                val = fun(*args)
-                cache.set(key_str, val, time)
-            return val
-        return __fun_arg_deco
-    return __fun_deco
+# def load_from_cache(key, time):
+#     '''
+#     返回key对应的缓存，time是缓存的有效时间，秒为单位，如果不存在就调用fun函数获取
+#     '''
+#     def __fun_deco(fun):
+#         def __fun_arg_deco(*args, **kwargs):
+#             cache = get_cache()
+#             suffix = kwargs.pop('suffix', None)
+#             if suffix:
+#                 key_str = ''.join(key).join(str(suffix))
+#             else:
+#                 key_str = str(key)
+#             val = cache.get(key_str)
+#             get_logger().debug('Getting cache by key(%s)' %(key_str))
+#             if not val:
+#                 val = fun(*args)
+#                 cache.set(key_str, val, time)
+#             return val
+#         return __fun_arg_deco
+#     return __fun_deco
 
 ## 获取前五个标签
 #@load_from_cache('tags', 300)

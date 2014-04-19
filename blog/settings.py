@@ -1,12 +1,15 @@
 # coding=utf-8
 # Django settings for blog project.
 
-from os import path
-import sys
 import os
+import sys
+from os import path
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
+
+BAE_APP_KEY = 'you_key'
+BAE_SECRET_KEY = 'you_key'
 
 PROJECT_DIR = path.abspath(os.getcwd())
 
@@ -22,9 +25,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'NAME': 'rlHGkgJpthDRYbXUCdRc',
+        'USER': BAE_APP_KEY,
+        'PASSWORD': BAE_SECRET_KEY,
         'HOST': 'sqld.duapp.com',
         'PORT': '4050',
     }
@@ -84,7 +87,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '527vw53r(c5@t99zi*ba_r23(2nj2#iw9&e_p2_xgu7z#q7(2r'
+SECRET_KEY = '527vw53r(c5@t99zi*ba_r21(2nj2#iw9&x_p2_xgu7z#q7(2r'
 
 # List of callables that know how to import templates from various sources.
 # TEMPLATE_LOADERS = (

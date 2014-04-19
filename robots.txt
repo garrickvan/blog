@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://xfuture.duapp.com/static/sitemap.xml
